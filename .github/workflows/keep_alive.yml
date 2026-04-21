@@ -1,0 +1,20 @@
+name: Keep HF Spaces Alive
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Backend
+        run: |
+          curl -s https://ramzai9-superkartprediction.hf.space/health
+          echo "Backend pinged"
+
+      - name: Ping Frontend
+        run: |
+          curl -s https://ramzai9-superkartfrontend.hf.space
+          echo "Frontend pinged"
